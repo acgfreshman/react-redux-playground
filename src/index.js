@@ -46,7 +46,8 @@ class App extends React.Component{
                     onVideoSelect = { selectedVideo =>
                         this.setState({selectedVideo})
                     }
-                    videos={this.state.videos}/>
+                    videos={this.state.videos}
+                />
             </div>
         );
     }

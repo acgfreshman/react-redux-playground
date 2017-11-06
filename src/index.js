@@ -4,7 +4,7 @@ import SearchBar from './components/search_bar';
 import YTSearch from 'youtube-api-search';
 import VideoList from './components/video_list';
 import VideoDetail from './components/video_detail';
-
+import _ from 'lodash';
 
 const API_KEY = 'AIzaSyDosjh0rHteAkGwRqqZx6kpDAQoUpkiAtY';
 
@@ -19,11 +19,14 @@ class App extends React.Component{
             videos:[],
             selectedVideo: null
         } ;
-
-        YTSearch({key:API_KEY, term:'surfboards'}, (videos) =>{
+        //do initial search
+        this.videoSearch('surfboard');
+    }
+    videoSearch(term) {
+        YTSearch({key:API_KEY, term: term}, (videos) =>{
             this.setState({
-                videos:videos,
-                selectedVideo:videos[0]
+                    videos:videos,
+                    selectedVideo:videos[0]
                 }
             );
             //this.setState({videos:videos}); if argument and property
@@ -32,9 +35,12 @@ class App extends React.Component{
     }
 
     render(){
+        //for throttlng search function
+        const videoSearch = _.debounce((term) => {this.videoSearch(term)}, 300);
+
         return(
             <div>
-                <SearchBar />
+                <SearchBar onSearchTermChange={videoSearch}/>
                 <VideoDetail video={this.state.selectedVideo } />
                 <VideoList
                     onVideoSelect = { selectedVideo =>

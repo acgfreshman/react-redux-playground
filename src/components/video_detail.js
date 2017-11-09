@@ -1,11 +1,11 @@
 import React from "react";
 
-const VideoDetails = ({video}) => {
-    if(!video){
+const VideoDetails = (props) => {
+    if(!props.video){
         return <div>Loading ...</div>;
     }
 
-    const videoId = video.id.videoId;
+    const videoId = props.video.id.videoId;
     const url = `https://www.youtube.com/embed/${videoId}`;
 
     return (
@@ -14,8 +14,8 @@ const VideoDetails = ({video}) => {
                 <iframe className='embed-responsive-item' src={url}></iframe>
             </div>
             <div className='details'>
-                <div>{video.snippet.title}</div>
-                <div>{video.snippet.description}</div>
+                <div>{props.video.snippet.title}</div>
+                <div>{props.video.snippet.description}</div>
             </div>
         </div>
     );

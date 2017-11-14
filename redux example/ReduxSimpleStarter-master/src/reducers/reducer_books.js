@@ -1,4 +1,3 @@
-
 export default  function() {
     return [
         {title: 'Javascript: the Good Parts'},

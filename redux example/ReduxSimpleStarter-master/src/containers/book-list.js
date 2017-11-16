@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import {selectBook} from "../actions/index";
+import { selectBook } from "../actions/index";
 import { bindActionCreators } from 'redux';
+
 
 class BookList extends React.Component {
     renderList(){
@@ -24,6 +25,7 @@ class BookList extends React.Component {
     }
 }
 
+//map app states to props in BookList container
 function mapStateToProps(state){
     return {
         books: state.books
